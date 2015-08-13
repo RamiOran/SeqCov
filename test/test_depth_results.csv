@@ -1,5 +1,0 @@
-
-Depth:1
-#Name,foreground_motif_seqCount,foreground_motif_seqCoverage(%),foreground_seqs_added,cumulative_foreground_seq_cov(%),background_motif_seqCount,background_motif_seqCoverage(%),background_seqs_added,cumulative_background_seq_cov(%)
-m_8,480,48.0,480,48.0,41,4.1,41,4.1
-m_2,414,41.4,178,65.8,105,10.5,87,12.8
