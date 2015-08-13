@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml-stylesheet type="text/xsl" href="fimo-to-html.xsl"?>
+<!-- Begin document body -->
+<fimo version="4.9.0" release="6 EST 20">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation=  xmlns:fimo="http://noble.gs.washington.edu/schema/fimo"
+>
+<command-line>/home/rami/Documents/SeqCov/utils/fimo --thresh 0.0001 --oc test_background_Fimo --verbosity 1 /home/rami/Documents/SeqCov/data/test_1.pwm /home/rami/Documents/SeqCov/data/test1_background.fa</command-line>
+<settings>
+<setting name="output directory">test_background_Fimo</setting>
+<setting name="MEME file name">/home/rami/Documents/SeqCov/data/test_1.pwm</setting>
+<setting name="sequence file name">/home/rami/Documents/SeqCov/data/test1_background.fa</setting>
+<setting name="allow clobber">true</setting>
+<setting name="compute q-values">true</setting>
+<setting name="text only">false</setting>
+<setting name="scan both strands">true</setting>
+<setting name="max sequence length">250000000</setting>
+<setting name="output threshold">0.0001</setting>
+<setting name="threshold type">p-value</setting>
+<setting name="max stored scores">100000</setting>
+<setting name="parse genomic coord.">false</setting>
+<setting name="pseudocount">0.1</setting>
+<setting name="verbosity">1</setting>
+</settings>
+<sequence-data num-sequences="1000" num-residues="6879012" />
+<alphabet>nucleotide</alphabet>
+<motif name="m_1" width="12" best-possible-match="GCACGTGGCGGC"/>
+<motif name="m_2" width="17" best-possible-match="CGCGCCGGCGGCTGCTG"/>
+<motif name="m_3" width="10" best-possible-match="GGGCGGGCGC"/>
+<motif name="m_4" width="10" best-possible-match="GTCACGTGAC"/>
+<motif name="m_5" width="10" best-possible-match="TCACGTGACT"/>
+<motif name="m_6" width="10" best-possible-match="AGTCACGTGA"/>
+<motif name="m_7" width="10" best-possible-match="GCACGTGACT"/>
+<motif name="m_8" width="11" best-possible-match="GCACGTGACTG"/>
+<motif name="m_9" width="6" best-possible-match="CACGTG"/>
+<motif name="m_10" width="8" best-possible-match="GCACGTGA"/>
+<motif name="m_11" width="10" best-possible-match="GCACGTGACG"/>
+<motif name="m_12" width="9" best-possible-match="ACGTGCCCG"/>
+<motif name="m_13" width="9" best-possible-match="ACGTGAGGG"/>
+<motif name="m_14" width="9" best-possible-match="AACACGTGA"/>
+<background source="non-redundant database">
+<value letter="A">0.275</value>
+<value letter="C">0.225</value>
+<value letter="G">0.225</value>
+<value letter="T">0.275</value>
+</background>
+<cisml-file>cisml.xml</cisml-file>
+</fimo>

@@ -1,0 +1,553 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<!DOCTYPE tomtom[
+<!ELEMENT tomtom (model, targets, queries, runtime)>
+<!ATTLIST tomtom version CDATA #REQUIRED release CDATA #REQUIRED>
+<!ELEMENT model (command_line, distance_measure, threshold, background, host, when)>
+<!ELEMENT command_line (#PCDATA)>
+<!ELEMENT distance_measure EMPTY>
+<!ATTLIST distance_measure value (allr|blic1|blic5|ed|kullback|llr1|llr5|pearson|sandelin) #REQUIRED>
+<!ELEMENT threshold (#PCDATA)>
+<!ATTLIST threshold type (evalue|qvalue) #REQUIRED>
+<!ELEMENT background EMPTY>
+<!ATTLIST background from (first_target|file) #REQUIRED A CDATA #REQUIRED C CDATA #REQUIRED G CDATA #REQUIRED T CDATA #REQUIRED file CDATA #IMPLIED>
+<!ELEMENT host (#PCDATA)>
+<!ELEMENT when (#PCDATA)>
+<!-- each target is listed in order that the target was specified to the command line
+     the motifs are not listed in any particular order -->
+<!ELEMENT targets (target_file*)>
+<!ELEMENT target_file (motif*)>
+<!ATTLIST target_file index CDATA #REQUIRED source CDATA #REQUIRED name CDATA #REQUIRED 
+  loaded CDATA #REQUIRED excluded CDATA #REQUIRED last_mod_date CDATA #REQUIRED>
+<!-- currently there can only be one query file (but users should not assume this will always be true)
+     the query motifs are specified in the order that they appear in the file
+     the matches are ordered from best to worst -->
+<!ELEMENT queries (query_file*)>
+<!ELEMENT query_file (query*)>
+<!ATTLIST query_file source CDATA #REQUIRED name CDATA #REQUIRED last_mod_date CDATA #REQUIRED>
+<!ELEMENT query (motif,match*)>
+<!ELEMENT match EMPTY>
+<!ATTLIST match target IDREF #REQUIRED orientation (forward|reverse) "forward" 
+  offset CDATA #REQUIRED pvalue CDATA #REQUIRED evalue CDATA #REQUIRED qvalue CDATA #REQUIRED>
+<!-- motif contains the probability of each of the nucleotide bases at each position;
+     i starts at 1; A, C, G and T are probabilities that sum to 1 -->
+<!ELEMENT motif (pos*)>
+<!ATTLIST motif id ID #REQUIRED name CDATA #REQUIRED alt CDATA #IMPLIED length CDATA #REQUIRED 
+  nsites CDATA #IMPLIED evalue CDATA #IMPLIED url CDATA #IMPLIED>
+<!ELEMENT pos EMPTY>
+<!ATTLIST pos i CDATA #REQUIRED A CDATA #REQUIRED C CDATA #REQUIRED G CDATA #REQUIRED T CDATA #REQUIRED>
+<!ELEMENT runtime EMPTY>
+<!ATTLIST runtime cycles CDATA #REQUIRED seconds CDATA #REQUIRED>
+]>
+<tomtom version="4.9.0" release="Wed Oct  3 11:07:26 EST 2012">
+	<model>
+		<command_line>tomtom -oc test_Tomtom_refine --verbosity 1 -no-ssc -min-overlap 5 -dist pearson -evalue -thresh 0.05 /home/rami/Documents/SeqCov/data/test_1.pwm /home/rami/Documents/SeqCov/data/test_1.pwm</command_line>
+		<distance_measure value="pearson"/>
+		<threshold type="evalue">0.05</threshold>
+		<background from="first_target" A="0.25" C="0.25" G="0.25" T="0.25"/>
+		<host>rami-CG5275</host>
+		<when>Wed Aug 12 21:55:50 2015</when>
+	</model>
+	<targets>
+		<target_file index="1" source="/home/rami/Documents/SeqCov/data/test_1.pwm" name="test_1.pwm" loaded="14" excluded="0" last_mod_date="Wed Aug 12 21:21:04 2015">
+			<motif id="t_1_m_1" name="m_1" length="12" nsites="0" evalue="1.0e+000" >
+				<pos i="1" A="0.088777" C="0.187605" G="0.596315" T="0.127303"/>
+				<pos i="2" A="0" C="0.60134" G="0.39866" T="0"/>
+				<pos i="3" A="0.427136" C="0.241206" G="0.331658" T="0"/>
+				<pos i="4" A="0" C="0.536013" G="0.463987" T="0"/>
+				<pos i="5" A="0" C="0.370184" G="0.629816" T="0"/>
+				<pos i="6" A="0.289782" C="0.144054" G="0.170854" T="0.39531"/>
+				<pos i="7" A="0" C="0" G="1" T="0"/>
+				<pos i="8" A="0.257956" C="0.321608" G="0.420436" T="0"/>
+				<pos i="9" A="0.088777" C="0.494137" G="0.417085" T="0"/>
+				<pos i="10" A="0.261307" C="0.207705" G="0.274707" T="0.256281"/>
+				<pos i="11" A="0" C="0.318258" G="0.681742" T="0"/>
+				<pos i="12" A="0.078727" C="0.437186" G="0.41206" T="0.072027"/>
+			</motif>
+			<motif id="t_1_m_10" name="m_10" length="8" nsites="0" evalue="1.0e+000" >
+				<pos i="1" A="0.082908" C="0.071429" G="0.618622" T="0.227041"/>
+				<pos i="2" A="0.045918" C="0.913265" G="0.03699" T="0.003827"/>
+				<pos i="3" A="0.860969" C="0.045918" G="0.057398" T="0.035714"/>
+				<pos i="4" A="0.02551" C="0.855867" G="0.066327" T="0.052296"/>
+				<pos i="5" A="0.039541" C="0.052296" G="0.887755" T="0.020408"/>
+				<pos i="6" A="0.039541" C="0.039541" G="0.058673" T="0.862245"/>
+				<pos i="7" A="0.014031" C="0.038265" G="0.918367" T="0.029337"/>
+				<pos i="8" A="0.524235" C="0.304847" G="0.072704" T="0.098214"/>
+			</motif>
+			<motif id="t_1_m_11" name="m_11" length="10" nsites="0" evalue="1.0e+000" >
+				<pos i="1" A="0.077253" C="0.0701" G="0.653791" T="0.198856"/>
+				<pos i="2" A="0.044349" C="0.896996" G="0.04578" T="0.012876"/>
+				<pos i="3" A="0.808298" C="0.064378" G="0.077253" T="0.050072"/>
+				<pos i="4" A="0.035765" C="0.828326" G="0.09299" T="0.042918"/>
+				<pos i="5" A="0.040057" C="0.052933" G="0.886981" T="0.020029"/>
+				<pos i="6" A="0.048641" C="0.061516" G="0.078684" T="0.811159"/>
+				<pos i="7" A="0.012876" C="0.098712" G="0.858369" T="0.030043"/>
+				<pos i="8" A="0.552217" C="0.277539" G="0.110157" T="0.060086"/>
+				<pos i="9" A="0.120172" C="0.597997" G="0.183119" T="0.098712"/>
+				<pos i="10" A="0.124464" C="0.184549" G="0.516452" T="0.174535"/>
+			</motif>
+			<motif id="t_1_m_12" name="m_12" length="9" nsites="0" evalue="1.0e+000" >
+				<pos i="1" A="1" C="0" G="0" T="0"/>
+				<pos i="2" A="0" C="1" G="0" T="0"/>
+				<pos i="3" A="0" C="0" G="1" T="0"/>
+				<pos i="4" A="0" C="0" G="0" T="1"/>
+				<pos i="5" A="0" C="0" G="1" T="0"/>
+				<pos i="6" A="0" C="1" G="0" T="0"/>
+				<pos i="7" A="0.288344" C="0.386503" G="0.245399" T="0.079755"/>
+				<pos i="8" A="0.159509" C="0.404908" G="0.226994" T="0.208589"/>
+				<pos i="9" A="0.208589" C="0.263804" G="0.343558" T="0.184049"/>
+			</motif>
+			<motif id="t_1_m_13" name="m_13" length="9" nsites="0" evalue="1.0e+000" >
+				<pos i="1" A="1" C="0" G="0" T="0"/>
+				<pos i="2" A="0" C="1" G="0" T="0"/>
+				<pos i="3" A="0" C="0" G="1" T="0"/>
+				<pos i="4" A="0" C="0" G="0" T="1"/>
+				<pos i="5" A="0" C="0" G="1" T="0"/>
+				<pos i="6" A="1" C="0" G="0" T="0"/>
+				<pos i="7" A="0.188406" C="0" G="0.652174" T="0.15942"/>
+				<pos i="8" A="0.144928" C="0.333333" G="0.42029" T="0.101449"/>
+				<pos i="9" A="0.15942" C="0.217391" G="0.347826" T="0.275362"/>
+			</motif>
+			<motif id="t_1_m_14" name="m_14" length="9" nsites="0" evalue="1.0e+000" >
+				<pos i="1" A="1" C="0" G="0" T="0"/>
+				<pos i="2" A="1" C="0" G="0" T="0"/>
+				<pos i="3" A="0.257143" C="0.657143" G="0.085714" T="0"/>
+				<pos i="4" A="0.8" C="0.028571" G="0.142857" T="0.028571"/>
+				<pos i="5" A="0" C="1" G="0" T="0"/>
+				<pos i="6" A="0" C="0" G="1" T="0"/>
+				<pos i="7" A="0.057143" C="0" G="0.142857" T="0.8"/>
+				<pos i="8" A="0.085714" C="0.057143" G="0.828571" T="0.028571"/>
+				<pos i="9" A="0.542857" C="0.142857" G="0.142857" T="0.171429"/>
+			</motif>
+			<motif id="t_1_m_2" name="m_2" length="17" nsites="0" evalue="1.0e+000" >
+				<pos i="1" A="0" C="0.504219" G="0.495781" T="0"/>
+				<pos i="2" A="0.187764" C="0.263713" G="0.322785" T="0.225738"/>
+				<pos i="3" A="0.120253" C="0.451477" G="0.377637" T="0.050633"/>
+				<pos i="4" A="0.270042" C="0.248945" G="0.272152" T="0.208861"/>
+				<pos i="5" A="0" C="0.537975" G="0.462025" T="0"/>
+				<pos i="6" A="0.232068" C="0.28481" G="0.263713" T="0.219409"/>
+				<pos i="7" A="0" C="0.42827" G="0.57173" T="0"/>
+				<pos i="8" A="0.21519" C="0.276371" G="0.278481" T="0.229958"/>
+				<pos i="9" A="0" C="0.649789" G="0.350211" T="0"/>
+				<pos i="10" A="0.263713" C="0.261603" G="0.267932" T="0.206751"/>
+				<pos i="11" A="0.008439" C="0.343882" G="0.514768" T="0.132911"/>
+				<pos i="12" A="0.00211" C="0.552742" G="0.445148" T="0"/>
+				<pos i="13" A="0.274262" C="0.198312" G="0.21519" T="0.312236"/>
+				<pos i="14" A="0" C="0.335443" G="0.664557" T="0"/>
+				<pos i="15" A="0.088608" C="0.605485" G="0.305907" T="0"/>
+				<pos i="16" A="0.236287" C="0.232068" G="0.257384" T="0.274262"/>
+				<pos i="17" A="0" C="0.386076" G="0.613924" T="0"/>
+			</motif>
+			<motif id="t_1_m_3" name="m_3" length="10" nsites="0" evalue="1.0e+000" >
+				<pos i="1" A="0" C="0.417997" G="0.582003" T="0"/>
+				<pos i="2" A="0.133527" C="0.29463" G="0.361393" T="0.21045"/>
+				<pos i="3" A="0" C="0.285922" G="0.714078" T="0"/>
+				<pos i="4" A="0.297533" C="0.380261" G="0.204644" T="0.117562"/>
+				<pos i="5" A="0.238026" C="0" G="0.761974" T="0"/>
+				<pos i="6" A="0" C="0.36865" G="0.63135" T="0"/>
+				<pos i="7" A="0" C="0.481858" G="0.518142" T="0"/>
+				<pos i="8" A="0.198839" C="0.310595" G="0.226415" T="0.264151"/>
+				<pos i="9" A="0" C="0.240929" G="0.759071" T="0"/>
+				<pos i="10" A="0" C="0.551524" G="0.448476" T="0"/>
+			</motif>
+			<motif id="t_1_m_4" name="m_4" length="10" nsites="0" evalue="1.0e+000" >
+				<pos i="1" A="0.137755" C="0.25" G="0.612245" T="0"/>
+				<pos i="2" A="0" C="0" G="0.362245" T="0.637755"/>
+				<pos i="3" A="0" C="1" G="0" T="0"/>
+				<pos i="4" A="0.903062" C="0.05102" G="0" T="0.045918"/>
+				<pos i="5" A="0" C="0.918368" G="0.045918" T="0.035714"/>
+				<pos i="6" A="0.035714" C="0.071429" G="0.892857" T="0"/>
+				<pos i="7" A="0.056122" C="0.015306" G="0.040816" T="0.887756"/>
+				<pos i="8" A="0" C="0" G="1" T="0"/>
+				<pos i="9" A="0.632653" C="0.367347" G="0" T="0"/>
+				<pos i="10" A="0" C="0.647959" G="0.214286" T="0.137755"/>
+			</motif>
+			<motif id="t_1_m_5" name="m_5" length="10" nsites="0" evalue="1.0e+000" >
+				<pos i="1" A="0" C="0" G="0.414286" T="0.585714"/>
+				<pos i="2" A="0" C="1" G="0" T="0"/>
+				<pos i="3" A="0.904762" C="0.042857" G="0.009524" T="0.042857"/>
+				<pos i="4" A="0" C="0.914286" G="0.047619" T="0.038095"/>
+				<pos i="5" A="0.052381" C="0.042857" G="0.904762" T="0"/>
+				<pos i="6" A="0.038095" C="0.014286" G="0.02381" T="0.923809"/>
+				<pos i="7" A="0" C="0" G="1" T="0"/>
+				<pos i="8" A="0.652381" C="0.347619" G="0" T="0"/>
+				<pos i="9" A="0" C="0.738096" G="0.233333" T="0.028571"/>
+				<pos i="10" A="0.166667" C="0.266667" G="0.204762" T="0.361905"/>
+			</motif>
+			<motif id="t_1_m_6" name="m_6" length="10" nsites="0" evalue="1.0e+000" >
+				<pos i="1" A="0.375" C="0.205" G="0.275" T="0.145"/>
+				<pos i="2" A="0" C="0.25" G="0.75" T="0"/>
+				<pos i="3" A="0" C="0" G="0.345" T="0.655"/>
+				<pos i="4" A="0" C="1" G="0" T="0"/>
+				<pos i="5" A="0.92" C="0.025" G="0.015" T="0.04"/>
+				<pos i="6" A="0" C="0.9" G="0.055" T="0.045"/>
+				<pos i="7" A="0.035" C="0.05" G="0.915" T="0"/>
+				<pos i="8" A="0.04" C="0.01" G="0.03" T="0.92"/>
+				<pos i="9" A="0" C="0" G="1" T="0"/>
+				<pos i="10" A="0.57" C="0.43" G="0" T="0"/>
+			</motif>
+			<motif id="t_1_m_7" name="m_7" length="10" nsites="0" evalue="1.0e+000" >
+				<pos i="1" A="0.232068" C="0.080169" G="0.481013" T="0.206751"/>
+				<pos i="2" A="0.122363" C="0.877637" G="0" T="0"/>
+				<pos i="3" A="0.966244" C="0.016878" G="0" T="0.016878"/>
+				<pos i="4" A="0" C="0.936709" G="0.037975" T="0.025316"/>
+				<pos i="5" A="0.067511" C="0" G="0.932489" T="0"/>
+				<pos i="6" A="0.029536" C="0.004219" G="0.016878" T="0.949367"/>
+				<pos i="7" A="0" C="0" G="1" T="0"/>
+				<pos i="8" A="0.514768" C="0.438819" G="0.021097" T="0.025316"/>
+				<pos i="9" A="0.164557" C="0.582279" G="0.177215" T="0.075949"/>
+				<pos i="10" A="0.126582" C="0.329114" G="0.206751" T="0.337553"/>
+			</motif>
+			<motif id="t_1_m_8" name="m_8" length="11" nsites="0" evalue="1.0e+000" >
+				<pos i="1" A="0.224576" C="0.04661" G="0.504238" T="0.224576"/>
+				<pos i="2" A="0.122881" C="0.877119" G="0" T="0"/>
+				<pos i="3" A="0.970339" C="0.029661" G="0" T="0"/>
+				<pos i="4" A="0" C="0.932203" G="0.025424" T="0.042373"/>
+				<pos i="5" A="0.033898" C="0.012712" G="0.95339" T="0"/>
+				<pos i="6" A="0.04661" C="0.004237" G="0.008475" T="0.940678"/>
+				<pos i="7" A="0" C="0" G="1" T="0"/>
+				<pos i="8" A="0.5" C="0.411017" G="0.059322" T="0.029661"/>
+				<pos i="9" A="0.144068" C="0.580508" G="0.177966" T="0.097458"/>
+				<pos i="10" A="0.144068" C="0.279661" G="0.207627" T="0.368644"/>
+				<pos i="11" A="0.067797" C="0.245763" G="0.372881" T="0.313559"/>
+			</motif>
+			<motif id="t_1_m_9" name="m_9" length="6" nsites="0" evalue="1.0e+000" >
+				<pos i="1" A="0.045556" C="0.93" G="0.016667" T="0.007778"/>
+				<pos i="2" A="0.897778" C="0.036667" G="0.036667" T="0.028889"/>
+				<pos i="3" A="0.016667" C="0.876667" G="0.061111" T="0.045556"/>
+				<pos i="4" A="0.045556" C="0.061111" G="0.876667" T="0.016667"/>
+				<pos i="5" A="0.028889" C="0.036667" G="0.036667" T="0.897778"/>
+				<pos i="6" A="0.007778" C="0.016667" G="0.93" T="0.045556"/>
+			</motif>
+		</target_file>
+	</targets>
+	<queries>
+		<query_file source="/home/rami/Documents/SeqCov/data/test_1.pwm" name="test_1.pwm" last_mod_date="Wed Aug 12 21:21:04 2015">
+			<query>
+				<motif id="q_m_1" name="m_1" length="12" nsites="0" evalue="1.0e+000" >
+					<pos i="1" A="0.088777" C="0.187605" G="0.596315" T="0.127303"/>
+					<pos i="2" A="0" C="0.60134" G="0.39866" T="0"/>
+					<pos i="3" A="0.427136" C="0.241206" G="0.331658" T="0"/>
+					<pos i="4" A="0" C="0.536013" G="0.463987" T="0"/>
+					<pos i="5" A="0" C="0.370184" G="0.629816" T="0"/>
+					<pos i="6" A="0.289782" C="0.144054" G="0.170854" T="0.39531"/>
+					<pos i="7" A="0" C="0" G="1" T="0"/>
+					<pos i="8" A="0.257956" C="0.321608" G="0.420436" T="0"/>
+					<pos i="9" A="0.088777" C="0.494137" G="0.417085" T="0"/>
+					<pos i="10" A="0.261307" C="0.207705" G="0.274707" T="0.256281"/>
+					<pos i="11" A="0" C="0.318258" G="0.681742" T="0"/>
+					<pos i="12" A="0.078727" C="0.437186" G="0.41206" T="0.072027"/>
+				</motif>
+				<match target="t_1_m_1" orientation="forward" offset="0" pvalue="6.64627e-22" evalue="9.30478e-21" qvalue="1.86096e-20"/>
+				<match target="t_1_m_2" orientation="reverse" offset="2" pvalue="1.16265e-06" evalue="1.62771e-05" qvalue="1.62771e-05"/>
+				<match target="t_1_m_3" orientation="forward" offset="-2" pvalue="4.52334e-05" evalue="0.000633267" qvalue="0.000422178"/>
+				<match target="t_1_m_11" orientation="forward" offset="0" pvalue="0.0022467" evalue="0.0314538" qvalue="0.0125815"/>
+			</query>
+			<query>
+				<motif id="q_m_2" name="m_2" length="17" nsites="0" evalue="1.0e+000" >
+					<pos i="1" A="0" C="0.504219" G="0.495781" T="0"/>
+					<pos i="2" A="0.187764" C="0.263713" G="0.322785" T="0.225738"/>
+					<pos i="3" A="0.120253" C="0.451477" G="0.377637" T="0.050633"/>
+					<pos i="4" A="0.270042" C="0.248945" G="0.272152" T="0.208861"/>
+					<pos i="5" A="0" C="0.537975" G="0.462025" T="0"/>
+					<pos i="6" A="0.232068" C="0.28481" G="0.263713" T="0.219409"/>
+					<pos i="7" A="0" C="0.42827" G="0.57173" T="0"/>
+					<pos i="8" A="0.21519" C="0.276371" G="0.278481" T="0.229958"/>
+					<pos i="9" A="0" C="0.649789" G="0.350211" T="0"/>
+					<pos i="10" A="0.263713" C="0.261603" G="0.267932" T="0.206751"/>
+					<pos i="11" A="0.008439" C="0.343882" G="0.514768" T="0.132911"/>
+					<pos i="12" A="0.00211" C="0.552742" G="0.445148" T="0"/>
+					<pos i="13" A="0.274262" C="0.198312" G="0.21519" T="0.312236"/>
+					<pos i="14" A="0" C="0.335443" G="0.664557" T="0"/>
+					<pos i="15" A="0.088608" C="0.605485" G="0.305907" T="0"/>
+					<pos i="16" A="0.236287" C="0.232068" G="0.257384" T="0.274262"/>
+					<pos i="17" A="0" C="0.386076" G="0.613924" T="0"/>
+				</motif>
+				<match target="t_1_m_2" orientation="forward" offset="0" pvalue="7.79539e-32" evalue="1.09135e-30" qvalue="2.18271e-30"/>
+				<match target="t_1_m_1" orientation="reverse" offset="-3" pvalue="2.71747e-06" evalue="3.80445e-05" qvalue="3.80445e-05"/>
+				<match target="t_1_m_3" orientation="forward" offset="-2" pvalue="0.0011536" evalue="0.0161505" qvalue="0.00789466"/>
+			</query>
+			<query>
+				<motif id="q_m_3" name="m_3" length="10" nsites="0" evalue="1.0e+000" >
+					<pos i="1" A="0" C="0.417997" G="0.582003" T="0"/>
+					<pos i="2" A="0.133527" C="0.29463" G="0.361393" T="0.21045"/>
+					<pos i="3" A="0" C="0.285922" G="0.714078" T="0"/>
+					<pos i="4" A="0.297533" C="0.380261" G="0.204644" T="0.117562"/>
+					<pos i="5" A="0.238026" C="0" G="0.761974" T="0"/>
+					<pos i="6" A="0" C="0.36865" G="0.63135" T="0"/>
+					<pos i="7" A="0" C="0.481858" G="0.518142" T="0"/>
+					<pos i="8" A="0.198839" C="0.310595" G="0.226415" T="0.264151"/>
+					<pos i="9" A="0" C="0.240929" G="0.759071" T="0"/>
+					<pos i="10" A="0" C="0.551524" G="0.448476" T="0"/>
+				</motif>
+				<match target="t_1_m_3" orientation="forward" offset="0" pvalue="8.36707e-20" evalue="1.17139e-18" qvalue="2.34278e-18"/>
+				<match target="t_1_m_1" orientation="forward" offset="2" pvalue="0.000234274" evalue="0.00327983" qvalue="0.00327983"/>
+				<match target="t_1_m_2" orientation="forward" offset="2" pvalue="0.000433907" evalue="0.0060747" qvalue="0.0040498"/>
+			</query>
+			<query>
+				<motif id="q_m_4" name="m_4" length="10" nsites="0" evalue="1.0e+000" >
+					<pos i="1" A="0.137755" C="0.25" G="0.612245" T="0"/>
+					<pos i="2" A="0" C="0" G="0.362245" T="0.637755"/>
+					<pos i="3" A="0" C="1" G="0" T="0"/>
+					<pos i="4" A="0.903062" C="0.05102" G="0" T="0.045918"/>
+					<pos i="5" A="0" C="0.918368" G="0.045918" T="0.035714"/>
+					<pos i="6" A="0.035714" C="0.071429" G="0.892857" T="0"/>
+					<pos i="7" A="0.056122" C="0.015306" G="0.040816" T="0.887756"/>
+					<pos i="8" A="0" C="0" G="1" T="0"/>
+					<pos i="9" A="0.632653" C="0.367347" G="0" T="0"/>
+					<pos i="10" A="0" C="0.647959" G="0.214286" T="0.137755"/>
+				</motif>
+				<match target="t_1_m_4" orientation="forward" offset="0" pvalue="3.62457e-14" evalue="5.07439e-13" qvalue="5.07439e-13"/>
+				<match target="t_1_m_5" orientation="forward" offset="-1" pvalue="3.3345e-08" evalue="4.6683e-07" qvalue="2.33415e-07"/>
+				<match target="t_1_m_6" orientation="reverse" offset="-1" pvalue="3.3345e-08" evalue="4.6683e-07" qvalue="2.33415e-07"/>
+				<match target="t_1_m_10" orientation="reverse" offset="-1" pvalue="5.25663e-07" evalue="7.35928e-06" qvalue="2.10265e-06"/>
+				<match target="t_1_m_7" orientation="forward" offset="-1" pvalue="9.17864e-07" evalue="1.28501e-05" qvalue="2.85558e-06"/>
+				<match target="t_1_m_11" orientation="forward" offset="-1" pvalue="1.22178e-06" evalue="1.71049e-05" qvalue="3.42099e-06"/>
+				<match target="t_1_m_8" orientation="forward" offset="-1" pvalue="1.40482e-06" evalue="1.96675e-05" qvalue="3.46833e-06"/>
+				<match target="t_1_m_9" orientation="forward" offset="-2" pvalue="1.91017e-06" evalue="2.67423e-05" qvalue="3.56564e-06"/>
+				<match target="t_1_m_12" orientation="forward" offset="-3" pvalue="0.00304362" evalue="0.0426106" qvalue="0.00501302"/>
+			</query>
+			<query>
+				<motif id="q_m_5" name="m_5" length="10" nsites="0" evalue="1.0e+000" >
+					<pos i="1" A="0" C="0" G="0.414286" T="0.585714"/>
+					<pos i="2" A="0" C="1" G="0" T="0"/>
+					<pos i="3" A="0.904762" C="0.042857" G="0.009524" T="0.042857"/>
+					<pos i="4" A="0" C="0.914286" G="0.047619" T="0.038095"/>
+					<pos i="5" A="0.052381" C="0.042857" G="0.904762" T="0"/>
+					<pos i="6" A="0.038095" C="0.014286" G="0.02381" T="0.923809"/>
+					<pos i="7" A="0" C="0" G="1" T="0"/>
+					<pos i="8" A="0.652381" C="0.347619" G="0" T="0"/>
+					<pos i="9" A="0" C="0.738096" G="0.233333" T="0.028571"/>
+					<pos i="10" A="0.166667" C="0.266667" G="0.204762" T="0.361905"/>
+				</motif>
+				<match target="t_1_m_5" orientation="forward" offset="0" pvalue="8.0888e-14" evalue="1.13243e-12" qvalue="1.13243e-12"/>
+				<match target="t_1_m_6" orientation="reverse" offset="0" pvalue="8.0888e-14" evalue="1.13243e-12" qvalue="1.13243e-12"/>
+				<match target="t_1_m_7" orientation="forward" offset="0" pvalue="1.23041e-08" evalue="1.72258e-07" qvalue="1.06553e-07"/>
+				<match target="t_1_m_8" orientation="forward" offset="0" pvalue="1.58302e-08" evalue="2.21623e-07" qvalue="1.06553e-07"/>
+				<match target="t_1_m_4" orientation="forward" offset="1" pvalue="2.28328e-08" evalue="3.19659e-07" qvalue="1.06553e-07"/>
+				<match target="t_1_m_11" orientation="forward" offset="0" pvalue="1.00334e-07" evalue="1.40468e-06" qvalue="4.01336e-07"/>
+				<match target="t_1_m_10" orientation="forward" offset="0" pvalue="3.79017e-07" evalue="5.30624e-06" qvalue="1.32656e-06"/>
+				<match target="t_1_m_9" orientation="forward" offset="-1" pvalue="2.94472e-06" evalue="4.12261e-05" qvalue="6.34248e-06"/>
+				<match target="t_1_m_12" orientation="forward" offset="-2" pvalue="0.000683983" evalue="0.00957576" qvalue="0.00112656"/>
+				<match target="t_1_m_14" orientation="forward" offset="1" pvalue="0.00129902" evalue="0.0181862" qvalue="0.00202069"/>
+				<match target="t_1_m_1" orientation="forward" offset="0" pvalue="0.00140172" evalue="0.0196241" qvalue="0.00206569"/>
+				<match target="t_1_m_13" orientation="reverse" offset="3" pvalue="0.0019529" evalue="0.0273405" qvalue="0.00273405"/>
+			</query>
+			<query>
+				<motif id="q_m_6" name="m_6" length="10" nsites="0" evalue="1.0e+000" >
+					<pos i="1" A="0.375" C="0.205" G="0.275" T="0.145"/>
+					<pos i="2" A="0" C="0.25" G="0.75" T="0"/>
+					<pos i="3" A="0" C="0" G="0.345" T="0.655"/>
+					<pos i="4" A="0" C="1" G="0" T="0"/>
+					<pos i="5" A="0.92" C="0.025" G="0.015" T="0.04"/>
+					<pos i="6" A="0" C="0.9" G="0.055" T="0.045"/>
+					<pos i="7" A="0.035" C="0.05" G="0.915" T="0"/>
+					<pos i="8" A="0.04" C="0.01" G="0.03" T="0.92"/>
+					<pos i="9" A="0" C="0" G="1" T="0"/>
+					<pos i="10" A="0.57" C="0.43" G="0" T="0"/>
+				</motif>
+				<match target="t_1_m_5" orientation="reverse" offset="0" pvalue="6.98142e-14" evalue="9.77399e-13" qvalue="9.77399e-13"/>
+				<match target="t_1_m_6" orientation="forward" offset="0" pvalue="6.98142e-14" evalue="9.77399e-13" qvalue="9.77399e-13"/>
+				<match target="t_1_m_7" orientation="reverse" offset="0" pvalue="7.45175e-09" evalue="1.04325e-07" qvalue="6.54199e-08"/>
+				<match target="t_1_m_8" orientation="reverse" offset="1" pvalue="9.3457e-09" evalue="1.3084e-07" qvalue="6.54199e-08"/>
+				<match target="t_1_m_4" orientation="forward" offset="-1" pvalue="2.62129e-08" evalue="3.6698e-07" qvalue="1.22327e-07"/>
+				<match target="t_1_m_11" orientation="reverse" offset="0" pvalue="6.73158e-08" evalue="9.42422e-07" qvalue="2.69263e-07"/>
+				<match target="t_1_m_10" orientation="reverse" offset="-2" pvalue="2.81023e-07" evalue="3.93432e-06" qvalue="9.8358e-07"/>
+				<match target="t_1_m_9" orientation="forward" offset="-3" pvalue="4.56899e-06" evalue="6.39659e-05" qvalue="9.84091e-06"/>
+				<match target="t_1_m_12" orientation="reverse" offset="1" pvalue="0.000636688" evalue="0.00891364" qvalue="0.00104866"/>
+				<match target="t_1_m_1" orientation="reverse" offset="2" pvalue="0.00124042" evalue="0.0173659" qvalue="0.00192955"/>
+				<match target="t_1_m_14" orientation="reverse" offset="-2" pvalue="0.00138027" evalue="0.0193238" qvalue="0.00203408"/>
+				<match target="t_1_m_13" orientation="reverse" offset="1" pvalue="0.00192676" evalue="0.0269747" qvalue="0.00269747"/>
+			</query>
+			<query>
+				<motif id="q_m_7" name="m_7" length="10" nsites="0" evalue="1.0e+000" >
+					<pos i="1" A="0.232068" C="0.080169" G="0.481013" T="0.206751"/>
+					<pos i="2" A="0.122363" C="0.877637" G="0" T="0"/>
+					<pos i="3" A="0.966244" C="0.016878" G="0" T="0.016878"/>
+					<pos i="4" A="0" C="0.936709" G="0.037975" T="0.025316"/>
+					<pos i="5" A="0.067511" C="0" G="0.932489" T="0"/>
+					<pos i="6" A="0.029536" C="0.004219" G="0.016878" T="0.949367"/>
+					<pos i="7" A="0" C="0" G="1" T="0"/>
+					<pos i="8" A="0.514768" C="0.438819" G="0.021097" T="0.025316"/>
+					<pos i="9" A="0.164557" C="0.582279" G="0.177215" T="0.075949"/>
+					<pos i="10" A="0.126582" C="0.329114" G="0.206751" T="0.337553"/>
+				</motif>
+				<match target="t_1_m_9" orientation="forward" offset="-1" pvalue="0" evalue="0" qvalue="0"/>
+				<match target="t_1_m_7" orientation="forward" offset="0" pvalue="2.96222e-14" evalue="4.14711e-13" qvalue="2.76474e-13"/>
+				<match target="t_1_m_8" orientation="forward" offset="0" pvalue="5.92445e-14" evalue="8.29423e-13" qvalue="4.14711e-13"/>
+				<match target="t_1_m_5" orientation="forward" offset="0" pvalue="7.42226e-09" evalue="1.03912e-07" qvalue="3.46372e-08"/>
+				<match target="t_1_m_6" orientation="reverse" offset="0" pvalue="7.42226e-09" evalue="1.03912e-07" qvalue="3.46372e-08"/>
+				<match target="t_1_m_11" orientation="forward" offset="0" pvalue="9.80138e-09" evalue="1.37219e-07" qvalue="3.92055e-08"/>
+				<match target="t_1_m_10" orientation="forward" offset="0" pvalue="1.88147e-08" evalue="2.63406e-07" qvalue="6.58515e-08"/>
+				<match target="t_1_m_4" orientation="forward" offset="1" pvalue="1.21716e-06" evalue="1.70403e-05" qvalue="3.78673e-06"/>
+				<match target="t_1_m_12" orientation="forward" offset="-2" pvalue="0.000130843" evalue="0.00183181" qvalue="0.000215507"/>
+				<match target="t_1_m_14" orientation="forward" offset="1" pvalue="0.000302847" evalue="0.00423986" qvalue="0.000471096"/>
+				<match target="t_1_m_1" orientation="forward" offset="0" pvalue="0.00126159" evalue="0.0176623" qvalue="0.00185919"/>
+				<match target="t_1_m_13" orientation="forward" offset="-2" pvalue="0.00277885" evalue="0.0389039" qvalue="0.00370513"/>
+			</query>
+			<query>
+				<motif id="q_m_8" name="m_8" length="11" nsites="0" evalue="1.0e+000" >
+					<pos i="1" A="0.224576" C="0.04661" G="0.504238" T="0.224576"/>
+					<pos i="2" A="0.122881" C="0.877119" G="0" T="0"/>
+					<pos i="3" A="0.970339" C="0.029661" G="0" T="0"/>
+					<pos i="4" A="0" C="0.932203" G="0.025424" T="0.042373"/>
+					<pos i="5" A="0.033898" C="0.012712" G="0.95339" T="0"/>
+					<pos i="6" A="0.04661" C="0.004237" G="0.008475" T="0.940678"/>
+					<pos i="7" A="0" C="0" G="1" T="0"/>
+					<pos i="8" A="0.5" C="0.411017" G="0.059322" T="0.029661"/>
+					<pos i="9" A="0.144068" C="0.580508" G="0.177966" T="0.097458"/>
+					<pos i="10" A="0.144068" C="0.279661" G="0.207627" T="0.368644"/>
+					<pos i="11" A="0.067797" C="0.245763" G="0.372881" T="0.313559"/>
+				</motif>
+				<match target="t_1_m_8" orientation="forward" offset="0" pvalue="5.83976e-17" evalue="8.17566e-16" qvalue="1.63513e-15"/>
+				<match target="t_1_m_7" orientation="forward" offset="0" pvalue="1.30694e-13" evalue="1.82972e-12" qvalue="1.82972e-12"/>
+				<match target="t_1_m_5" orientation="forward" offset="0" pvalue="5.14426e-09" evalue="7.20196e-08" qvalue="3.60098e-08"/>
+				<match target="t_1_m_6" orientation="reverse" offset="0" pvalue="5.14426e-09" evalue="7.20196e-08" qvalue="3.60098e-08"/>
+				<match target="t_1_m_11" orientation="forward" offset="0" pvalue="1.28272e-08" evalue="1.79581e-07" qvalue="6.04667e-08"/>
+				<match target="t_1_m_10" orientation="forward" offset="0" pvalue="1.29572e-08" evalue="1.814e-07" qvalue="6.04667e-08"/>
+				<match target="t_1_m_4" orientation="forward" offset="1" pvalue="1.66852e-06" evalue="2.33593e-05" qvalue="5.83984e-06"/>
+				<match target="t_1_m_9" orientation="forward" offset="-1" pvalue="8.42632e-06" evalue="0.000117968" qvalue="2.14488e-05"/>
+				<match target="t_1_m_12" orientation="forward" offset="-2" pvalue="3.91794e-05" evalue="0.000548512" qvalue="7.00636e-05"/>
+				<match target="t_1_m_14" orientation="forward" offset="1" pvalue="0.000386583" evalue="0.00541216" qvalue="0.000601352"/>
+				<match target="t_1_m_1" orientation="forward" offset="0" pvalue="0.000599608" evalue="0.00839451" qvalue="0.000883632"/>
+				<match target="t_1_m_13" orientation="forward" offset="-2" pvalue="0.00085045" evalue="0.0119063" qvalue="0.00119063"/>
+			</query>
+			<query>
+				<motif id="q_m_9" name="m_9" length="6" nsites="0" evalue="1.0e+000" >
+					<pos i="1" A="0.045556" C="0.93" G="0.016667" T="0.007778"/>
+					<pos i="2" A="0.897778" C="0.036667" G="0.036667" T="0.028889"/>
+					<pos i="3" A="0.016667" C="0.876667" G="0.061111" T="0.045556"/>
+					<pos i="4" A="0.045556" C="0.061111" G="0.876667" T="0.016667"/>
+					<pos i="5" A="0.028889" C="0.036667" G="0.036667" T="0.897778"/>
+					<pos i="6" A="0.007778" C="0.016667" G="0.93" T="0.045556"/>
+				</motif>
+				<match target="t_1_m_9" orientation="forward" offset="0" pvalue="6.53875e-06" evalue="9.15425e-05" qvalue="6.53867e-05"/>
+				<match target="t_1_m_10" orientation="forward" offset="1" pvalue="1.96161e-05" evalue="0.000274626" qvalue="6.53867e-05"/>
+				<match target="t_1_m_4" orientation="forward" offset="2" pvalue="3.26933e-05" evalue="0.000457707" qvalue="6.53867e-05"/>
+				<match target="t_1_m_5" orientation="forward" offset="1" pvalue="3.26933e-05" evalue="0.000457707" qvalue="6.53867e-05"/>
+				<match target="t_1_m_6" orientation="forward" offset="3" pvalue="3.26933e-05" evalue="0.000457707" qvalue="6.53867e-05"/>
+				<match target="t_1_m_7" orientation="forward" offset="1" pvalue="3.26933e-05" evalue="0.000457707" qvalue="6.53867e-05"/>
+				<match target="t_1_m_11" orientation="forward" offset="1" pvalue="3.26933e-05" evalue="0.000457707" qvalue="6.53867e-05"/>
+				<match target="t_1_m_8" orientation="forward" offset="1" pvalue="3.92319e-05" evalue="0.000549246" qvalue="6.86558e-05"/>
+				<match target="t_1_m_14" orientation="forward" offset="2" pvalue="9.69335e-05" evalue="0.00135707" qvalue="0.000150785"/>
+				<match target="t_1_m_12" orientation="forward" offset="-1" pvalue="0.00205696" evalue="0.0287975" qvalue="0.00261795"/>
+				<match target="t_1_m_13" orientation="forward" offset="-1" pvalue="0.00205696" evalue="0.0287975" qvalue="0.00261795"/>
+			</query>
+			<query>
+				<motif id="q_m_10" name="m_10" length="8" nsites="0" evalue="1.0e+000" >
+					<pos i="1" A="0.082908" C="0.071429" G="0.618622" T="0.227041"/>
+					<pos i="2" A="0.045918" C="0.913265" G="0.03699" T="0.003827"/>
+					<pos i="3" A="0.860969" C="0.045918" G="0.057398" T="0.035714"/>
+					<pos i="4" A="0.02551" C="0.855867" G="0.066327" T="0.052296"/>
+					<pos i="5" A="0.039541" C="0.052296" G="0.887755" T="0.020408"/>
+					<pos i="6" A="0.039541" C="0.039541" G="0.058673" T="0.862245"/>
+					<pos i="7" A="0.014031" C="0.038265" G="0.918367" T="0.029337"/>
+					<pos i="8" A="0.524235" C="0.304847" G="0.072704" T="0.098214"/>
+				</motif>
+				<match target="t_1_m_10" orientation="forward" offset="0" pvalue="2.85996e-11" evalue="4.00394e-10" qvalue="8.00788e-10"/>
+				<match target="t_1_m_11" orientation="forward" offset="0" pvalue="3.1584e-09" evalue="4.42177e-08" qvalue="4.42177e-08"/>
+				<match target="t_1_m_8" orientation="forward" offset="0" pvalue="6.77271e-08" evalue="9.48179e-07" qvalue="6.03547e-07"/>
+				<match target="t_1_m_7" orientation="forward" offset="0" pvalue="8.6221e-08" evalue="1.20709e-06" qvalue="6.03547e-07"/>
+				<match target="t_1_m_9" orientation="forward" offset="-1" pvalue="1.16362e-06" evalue="1.62907e-05" qvalue="5.43024e-06"/>
+				<match target="t_1_m_6" orientation="reverse" offset="0" pvalue="1.91911e-06" evalue="2.68675e-05" qvalue="7.67644e-06"/>
+				<match target="t_1_m_5" orientation="forward" offset="0" pvalue="2.42163e-06" evalue="3.39028e-05" qvalue="8.47569e-06"/>
+				<match target="t_1_m_4" orientation="forward" offset="1" pvalue="5.32301e-06" evalue="7.45221e-05" qvalue="1.49044e-05"/>
+				<match target="t_1_m_14" orientation="forward" offset="1" pvalue="0.000831186" evalue="0.0116366" qvalue="0.00136901"/>
+				<match target="t_1_m_13" orientation="forward" offset="-2" pvalue="0.000897466" evalue="0.0125645" qvalue="0.00139606"/>
+				<match target="t_1_m_12" orientation="reverse" offset="3" pvalue="0.00130912" evalue="0.0183276" qvalue="0.00192922"/>
+			</query>
+			<query>
+				<motif id="q_m_11" name="m_11" length="10" nsites="0" evalue="1.0e+000" >
+					<pos i="1" A="0.077253" C="0.0701" G="0.653791" T="0.198856"/>
+					<pos i="2" A="0.044349" C="0.896996" G="0.04578" T="0.012876"/>
+					<pos i="3" A="0.808298" C="0.064378" G="0.077253" T="0.050072"/>
+					<pos i="4" A="0.035765" C="0.828326" G="0.09299" T="0.042918"/>
+					<pos i="5" A="0.040057" C="0.052933" G="0.886981" T="0.020029"/>
+					<pos i="6" A="0.048641" C="0.061516" G="0.078684" T="0.811159"/>
+					<pos i="7" A="0.012876" C="0.098712" G="0.858369" T="0.030043"/>
+					<pos i="8" A="0.552217" C="0.277539" G="0.110157" T="0.060086"/>
+					<pos i="9" A="0.120172" C="0.597997" G="0.183119" T="0.098712"/>
+					<pos i="10" A="0.124464" C="0.184549" G="0.516452" T="0.174535"/>
+				</motif>
+				<match target="t_1_m_11" orientation="forward" offset="0" pvalue="3.41958e-15" evalue="4.78742e-14" qvalue="9.57483e-14"/>
+				<match target="t_1_m_10" orientation="forward" offset="0" pvalue="1.81293e-11" evalue="2.5381e-10" qvalue="2.5381e-10"/>
+				<match target="t_1_m_8" orientation="forward" offset="0" pvalue="1.47094e-07" evalue="2.05932e-06" qvalue="1.04548e-06"/>
+				<match target="t_1_m_7" orientation="forward" offset="0" pvalue="1.49355e-07" evalue="2.09097e-06" qvalue="1.04548e-06"/>
+				<match target="t_1_m_5" orientation="forward" offset="0" pvalue="7.19078e-07" evalue="1.00671e-05" qvalue="3.99291e-06"/>
+				<match target="t_1_m_6" orientation="reverse" offset="0" pvalue="8.55624e-07" evalue="1.19787e-05" qvalue="3.99291e-06"/>
+				<match target="t_1_m_9" orientation="forward" offset="-1" pvalue="1.48415e-06" evalue="2.07781e-05" qvalue="5.19453e-06"/>
+				<match target="t_1_m_4" orientation="reverse" offset="1" pvalue="2.1988e-06" evalue="3.07832e-05" qvalue="6.84071e-06"/>
+				<match target="t_1_m_1" orientation="forward" offset="0" pvalue="0.000727731" evalue="0.0101882" qvalue="0.00119862"/>
+				<match target="t_1_m_14" orientation="forward" offset="1" pvalue="0.0012571" evalue="0.0175993" qvalue="0.00195548"/>
+				<match target="t_1_m_12" orientation="reverse" offset="3" pvalue="0.00203213" evalue="0.0284498" qvalue="0.00299471"/>
+				<match target="t_1_m_13" orientation="forward" offset="-2" pvalue="0.00301004" evalue="0.0421405" qvalue="0.00421405"/>
+			</query>
+			<query>
+				<motif id="q_m_12" name="m_12" length="9" nsites="0" evalue="1.0e+000" >
+					<pos i="1" A="1" C="0" G="0" T="0"/>
+					<pos i="2" A="0" C="1" G="0" T="0"/>
+					<pos i="3" A="0" C="0" G="1" T="0"/>
+					<pos i="4" A="0" C="0" G="0" T="1"/>
+					<pos i="5" A="0" C="0" G="1" T="0"/>
+					<pos i="6" A="0" C="1" G="0" T="0"/>
+					<pos i="7" A="0.288344" C="0.386503" G="0.245399" T="0.079755"/>
+					<pos i="8" A="0.159509" C="0.404908" G="0.226994" T="0.208589"/>
+					<pos i="9" A="0.208589" C="0.263804" G="0.343558" T="0.184049"/>
+				</motif>
+				<match target="t_1_m_12" orientation="forward" offset="0" pvalue="4.18025e-13" evalue="5.85235e-12" qvalue="1.17047e-11"/>
+				<match target="t_1_m_8" orientation="forward" offset="2" pvalue="2.58281e-05" evalue="0.000361594" qvalue="0.000361594"/>
+				<match target="t_1_m_7" orientation="forward" offset="2" pvalue="5.9063e-05" evalue="0.000826882" qvalue="0.000551255"/>
+				<match target="t_1_m_10" orientation="reverse" offset="2" pvalue="8.25308e-05" evalue="0.00115543" qvalue="0.000577716"/>
+				<match target="t_1_m_11" orientation="reverse" offset="4" pvalue="0.000207612" evalue="0.00290656" qvalue="0.00116263"/>
+				<match target="t_1_m_9" orientation="forward" offset="1" pvalue="0.000482218" evalue="0.00675105" qvalue="0.00150023"/>
+				<match target="t_1_m_5" orientation="forward" offset="2" pvalue="0.000563354" evalue="0.00788696" qvalue="0.00155792"/>
+				<match target="t_1_m_6" orientation="reverse" offset="2" pvalue="0.000612041" evalue="0.00856857" qvalue="0.00155792"/>
+				<match target="t_1_m_4" orientation="reverse" offset="3" pvalue="0.00114055" evalue="0.0159677" qvalue="0.00202028"/>
+			</query>
+			<query>
+				<motif id="q_m_13" name="m_13" length="9" nsites="0" evalue="1.0e+000" >
+					<pos i="1" A="1" C="0" G="0" T="0"/>
+					<pos i="2" A="0" C="1" G="0" T="0"/>
+					<pos i="3" A="0" C="0" G="1" T="0"/>
+					<pos i="4" A="0" C="0" G="0" T="1"/>
+					<pos i="5" A="0" C="0" G="1" T="0"/>
+					<pos i="6" A="1" C="0" G="0" T="0"/>
+					<pos i="7" A="0.188406" C="0" G="0.652174" T="0.15942"/>
+					<pos i="8" A="0.144928" C="0.333333" G="0.42029" T="0.101449"/>
+					<pos i="9" A="0.15942" C="0.217391" G="0.347826" T="0.275362"/>
+				</motif>
+				<match target="t_1_m_13" orientation="forward" offset="0" pvalue="9.01149e-14" evalue="1.26161e-12" qvalue="2.52322e-12"/>
+				<match target="t_1_m_10" orientation="forward" offset="2" pvalue="0.000113468" evalue="0.00158856" qvalue="0.00133968"/>
+				<match target="t_1_m_14" orientation="forward" offset="3" pvalue="0.000179581" evalue="0.00251413" qvalue="0.00133968"/>
+				<match target="t_1_m_5" orientation="reverse" offset="4" pvalue="0.000287083" evalue="0.00401916" qvalue="0.00133968"/>
+				<match target="t_1_m_8" orientation="forward" offset="2" pvalue="0.000288127" evalue="0.00403378" qvalue="0.00133968"/>
+				<match target="t_1_m_6" orientation="forward" offset="4" pvalue="0.000310436" evalue="0.00434611" qvalue="0.00133968"/>
+				<match target="t_1_m_11" orientation="forward" offset="2" pvalue="0.000334921" evalue="0.00468889" qvalue="0.00133968"/>
+				<match target="t_1_m_4" orientation="reverse" offset="3" pvalue="0.000563316" evalue="0.00788643" qvalue="0.00174573"/>
+				<match target="t_1_m_7" orientation="forward" offset="2" pvalue="0.00074817" evalue="0.0104744" qvalue="0.00174573"/>
+				<match target="t_1_m_9" orientation="forward" offset="1" pvalue="0.00119296" evalue="0.0167014" qvalue="0.00223001"/>
+				<match target="t_1_m_12" orientation="forward" offset="0" pvalue="0.00119465" evalue="0.016725" qvalue="0.00223001"/>
+			</query>
+			<query>
+				<motif id="q_m_14" name="m_14" length="9" nsites="0" evalue="1.0e+000" >
+					<pos i="1" A="1" C="0" G="0" T="0"/>
+					<pos i="2" A="1" C="0" G="0" T="0"/>
+					<pos i="3" A="0.257143" C="0.657143" G="0.085714" T="0"/>
+					<pos i="4" A="0.8" C="0.028571" G="0.142857" T="0.028571"/>
+					<pos i="5" A="0" C="1" G="0" T="0"/>
+					<pos i="6" A="0" C="0" G="1" T="0"/>
+					<pos i="7" A="0.057143" C="0" G="0.142857" T="0.8"/>
+					<pos i="8" A="0.085714" C="0.057143" G="0.828571" T="0.028571"/>
+					<pos i="9" A="0.542857" C="0.142857" G="0.142857" T="0.171429"/>
+				</motif>
+				<match target="t_1_m_14" orientation="forward" offset="0" pvalue="1.22382e-14" evalue="1.71335e-13" qvalue="3.42671e-13"/>
+				<match target="t_1_m_10" orientation="forward" offset="-1" pvalue="0.000467874" evalue="0.00655024" qvalue="0.00562363"/>
+				<match target="t_1_m_9" orientation="forward" offset="-2" pvalue="0.000863039" evalue="0.0120825" qvalue="0.00562363"/>
+				<match target="t_1_m_7" orientation="forward" offset="-1" pvalue="0.00100422" evalue="0.0140591" qvalue="0.00562363"/>
+				<match target="t_1_m_8" orientation="forward" offset="-1" pvalue="0.00139379" evalue="0.019513" qvalue="0.00650435"/>
+				<match target="t_1_m_11" orientation="forward" offset="-1" pvalue="0.00198901" evalue="0.0278461" qvalue="0.00741892"/>
+				<match target="t_1_m_4" orientation="forward" offset="0" pvalue="0.00252956" evalue="0.0354138" qvalue="0.00752004"/>
+			</query>
+		</query_file>
+	</queries>
+	<runtime cycles="253398" seconds="0.253"/>
+</tomtom>
