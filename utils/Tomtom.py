@@ -2,7 +2,9 @@
 # the terms of the MIT License, see the file COPYING included with this 
 # distribution.
 from __future__ import division
-
+"""Script to run Tomtom for motif similarity. Tomtom is part of the MEME suite:
+http://meme-suite.org/
+"""
 import os
 import re
 

@@ -4,6 +4,7 @@
 from __future__ import division
 """
 Used to call the FIMO tool; part of the MEME suite
+http://meme-suite.org/
 """
 import os
 import re
@@ -84,7 +85,7 @@ def parseFimo(fimoFile, strand):
 			stop = int(lineSplit[3])
 			pval = float(lineSplit[6])
 			#check of this is on the negative strand hit
-			if start > stop and strand == 'single':
+			if strand == 'single' and inStrand == '-':
 				continue
 			if motifName not in fimoDict:
 				fimoDict[motifName] = []

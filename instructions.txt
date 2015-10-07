@@ -8,7 +8,7 @@ test_scan_results.csv: the main results file with sequence coverage of the motif
 test_back_Fimo: original FIMO results for background data
 test_fore_Fimo: original FIMO results for foreground data
 test_back_motif_hits: 
-The motif hits acorss the foreground fasta file. In the format of:
+The motif hits across the foreground fasta file. In the format of:
 >motif_1
 seq1
 seq10
@@ -17,7 +17,7 @@ seq18
 seq_6
 seq_7  
 test_fore_motif_hits:
-The motif hits acorss the foreground fasta file. In the format of:
+The motif hits across the foreground fasta file. In the format of:
 >motif_1
 seq1
 seq10
@@ -32,8 +32,8 @@ The input configuration file
 
 #################
 #################
-To perfrom motif scanning then sequence coverage across a fasta file
-Check the deafult conf file under: /data/deafult.greedy_scanCov.conf
+To perform motif scanning then sequence coverage across a fasta file
+Check the default conf file under: /data/deafult.greedy_scanCov.conf
 Run the program using:python main.py -jid test -confFile ./data/default_greedy_scanCov.conf
 Results will be under a folder named test. The results folder will contain:
 test_depth_results.csv: the main results file which has the minimum set of motifs with highest sequence coverage 

@@ -3,7 +3,7 @@
 # distribution.
 from __future__ import division
 """
-Perform opertains to scan PWM on input file  only and find how much coverage by all the motifs in the PWM file
+Perform operations to ONLY scan PWM on input file   and find how much coverage by all the motifs in the PWM file
 """
 import Fimo
 import general_utils

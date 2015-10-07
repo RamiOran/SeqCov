@@ -3,7 +3,7 @@
 # distribution.
 from __future__ import division
 """
-Perform opertains to scan PWM input file and find coverage and number of motifs required
+Perform operations to scan PWM input file and find coverage and number of motifs required (The motif selection problem)
 """
 #python imports
 import sys
@@ -288,17 +288,18 @@ def callMotifPwmScanCov(args, confDict, fileList):
 		
 	
 	####
-	#greedy and refinement	
+	#greedy filtered (greedyFilt) and refinement	
 	####
-	if confDict['sequence.coverage']['app'] == 'greedy' and confDict['motif_refine']['app'] == 'tomtom_refine':
-		depth = int(confDict['greedy']['depth'])
-		if confDict['greedy']['filter'] == 'true':
+	if confDict['sequence.coverage']['app'] == 'greedyFilt' and confDict['motif_refine']['app'] == 'tomtom_refine':
+		depth = int(confDict['greedyFilt']['depth'])
+		if confDict['greedyFilt']['filter'] == 'true':
 			#get the threshold value from the configure file
-			filterThresh = float(confDict['greedy']['filter_threshold'])
+			filterThresh = float(confDict['greedyFilt']['filter_threshold'])
 			filterMinNumSeq = filterThresh * foreNumSeqs
-		print 'Perform greedy sequence coverage with refinement and depth:', depth
+		print 'Perform filtered greedy sequence coverage with refinement and depth:', depth
 		#this dict is between a depth value and a tuple of motif Ids, seq sets, and newly added seqs by each motif
-		depthDict = greedy.callGreedyDepthRefine(Uset, Sdict, depth, tomtomDict, motifIdDict, idMotifDict, filterMinNumSeq)
+		#depthDict = greedy.callGreedyDepthRefine(Uset, Sdict, depth, tomtomDict, motifIdDict, idMotifDict, filterMinNumSeq)
+		depthDict = greedy.callGreedyFiltRefine(Uset, Sdict, depth, tomtomDict, motifIdDict, idMotifDict, filterMinNumSeq)
 		#if there is a background file use it for comaprison purposes
 		if confDict['input']['back_testing_file'] != 'none':
 			#run the FIMO tool for the background sequences
@@ -311,7 +312,6 @@ def callMotifPwmScanCov(args, confDict, fileList):
 			#find number of sequences in the background file
 			backNumSeqs = general_utils.findNumSeqs(confDict['input']['back_testing_file'])
 			#parse the fimo results folder
-			#strand = 'single'
 			strand = confDict['fimo']['strand']
 			#fimoDict between motif names and seq hits in the background  file
 			backFimoDict = Fimo.parseFimo(fimoOutDir+'/fimo.txt', strand)
@@ -326,47 +326,6 @@ def callMotifPwmScanCov(args, confDict, fileList):
 		depthOutFileName = args.jid + '_depth_results.csv'
 		finalSelectMotifList = outputResults(depthOutFileName, depthDict, backFimoDict, filterMinNumSeq, idMotifDict, foreNumSeqs, backNumSeqs)
 		fileList.append(depthOutFileName)
-	
-	
-	#####
-	#greedy no refinement
-	#####
-	if confDict['sequence.coverage']['app'] == 'greedy' and confDict['motif_refine']['app'] == 'none':
-		depth = int(confDict['greedy']['depth'])
-		print 'Perform greedy sequence coverage with no refinement and depth:', depth
-		#this dict is between a depth value and a tuple of motif Ids, seq sets, and newly added seqs by each motif
-		depthDict = greedy.callGreedyDepth(Uset, Sdict, depth)
-		#if there is a background file use it for comaprison purposes
-		if confDict['input']['back_testing_file'] != 'none':
-			#run the FIMO tool for the background sequences
-			fimoParaDict = {}
-			fimoParaDict['thresh'] = confDict['fimo']['pvalue']
-			#fimo output directory name
-			fimoOutDir = args.jid + '_background_Fimo'
-			Fimo.callFimo(confDict['input']['back_testing_file'] , pwmFileName, fimoParaDict, fimoOutDir)
-			fileList.append(fimoOutDir)
-			#find number of sequences in the background file
-			backNumSeqs = general_utils.findNumSeqs(confDict['input']['back_testing_file'])
-			#parse the fimo results folder
-			#strand = 'single'
-			strand = 'double'
-			#fimoDict between motif names and seq hits in the background  file
-			backFimoDict = Fimo.parseFimo(fimoOutDir+'/fimo.txt', strand)
-			#write the motifs in the format for sequence coverge algorithms 
-			motifSeqFileName = args.jid + '_backMotifSeq'
-			general_utils.writeMotifSeqFile(backFimoDict, motifSeqFileName)
-			fileList.append(motifSeqFileName)
-		#check if we want to do filtering
-		if confDict['greedy']['filter'] == 'true':
-			#get the threshold value from the configure file
-			filterThresh = float(confDict['greedy']['filter_threshold'])
-			filterMinNumSeq = filterThresh * foreNumSeqs
-			
-		#output results 
-		for depthVal in sorted(depthDict.iterkeys(), key=int):
-			depthOutFileName = args.jid + '_depth_results_'+ str(depthVal) + '.csv'
-			finalSelectMotifList = outputResults(depthOutFileName, depthDict, backFimoDict, filterMinNumSeq, idMotifDict, foreNumSeqs, backNumSeqs)
-			fileList.append(depthOutFileName)
 	
 	
 	####

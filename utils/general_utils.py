@@ -452,7 +452,6 @@ def makeMotifLogo(motifIdList, motifDict, outDirName, pwmFileName, idMotifDict, 
 	inPath = os.path.realpath(__file__)
 	split = inPath.split('/')
 	inPath = '/'.join(split[:len(split)-2])
-	print 'inPath:', inPath
 	command =  inPath + '/' + 'meme2images -png ' + pwmFileName + ' ' + outDirName
 	#print 'meme2image command:', command
 	try:

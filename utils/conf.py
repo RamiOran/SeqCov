@@ -1,3 +1,7 @@
+# This module is free software. You can redistribute it and/or modify it under 
+# the terms of the MIT License, see the file COPYING included with this 
+# distribution.
+
 """
 conf.py -- config/job file parser
 """

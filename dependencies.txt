@@ -1,1 +1,4 @@
 Python Bioperl: for parsing fasta files
+FIMO: used for finding motif matches (PWMs) on fasta sequences. FIMO is part of the MEME suit.
+The FIMO executable is already in the utils folder, but depending on the machine you might need
+to install it manually and the copy the executable to the utils folder.  

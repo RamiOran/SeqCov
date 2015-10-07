@@ -1,6 +1,7 @@
 # This module is free software. You can redistribute it and/or modify it under 
 # the terms of the MIT License, see the file COPYING included with this 
 # distribution.
+"""Branch and cut method for motif selection """
 from __future__ import division
 import sys
 import os
