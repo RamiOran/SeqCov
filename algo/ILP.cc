@@ -49,8 +49,8 @@ vector<double> solve(vector<set<int> > &adj_list, int gene_numb) {
     ASIZE+=adj_list[i].size();
   }
   
-  LPX *lp;
-
+  //LPX *lp;
+  glp_prob *lp;
   int *ia;
   int *ja;
   double *ar;
@@ -73,36 +73,36 @@ vector<double> solve(vector<set<int> > &adj_list, int gene_numb) {
   }
   assert(index_count <ASIZE+2);
 
-  lp = lpx_create_prob();
-  lpx_set_prob_name(lp,"SET COVER");
-  lpx_set_obj_dir(lp,LPX_MIN);
+  lp = glp_create_prob();
+  glp_set_prob_name(lp,"SET COVER");
+  glp_set_obj_dir(lp,GLP_MIN);
 
-  lpx_set_int_parm(lp,LPX_K_MSGLEV,1);
+  //glp_set_int_parm(lp,GLP_K_MSGLEV,1);
 
-  lpx_add_rows(lp,m);
+  glp_add_rows(lp,m);
   for (int i=1;i<=m;i++) {
-    lpx_set_row_bnds(lp,i,LPX_DB,1.0,n);
+    glp_set_row_bnds(lp,i,GLP_DB,1.0,n);
   }
-  lpx_add_cols(lp,n);
+  glp_add_cols(lp,n);
   for (int i=1;i<=n;i++) {
-    lpx_set_col_bnds(lp,i,LPX_DB,0.0,1.0);
-    lpx_set_obj_coef(lp,i,1.0);
+    glp_set_col_bnds(lp,i,GLP_DB,0.0,1.0);
+    glp_set_obj_coef(lp,i,1.0);
   }
   cout << n << " " << m << endl;
   
-  lpx_load_matrix(lp,index_count,ia,ja,ar);
-  lpx_simplex(lp);
-  Z= lpx_get_obj_val(lp);
+  glp_load_matrix(lp,index_count,ia,ja,ar);
+  glp_simplex(lp,NULL);
+  Z= glp_get_obj_val(lp);
 
   cout << "Best Possible = " << Z << endl;
 
   x.clear();
   x.resize(n);
   for (int i=0;i<n;i++) {
-    x[i] = lpx_get_col_prim(lp,i+1);
+    x[i] = glp_get_col_prim(lp,i+1);
   }
 
-  lpx_delete_prob(lp);
+  glp_delete_prob(lp);
   delete [] ar;
   delete [] ja;
   delete [] ia;

@@ -83,7 +83,8 @@ vector<double> solve(vector<set<int> > &adj_list, int gene_numb) {
   }
   assert(index_count <ASIZE+2);
 
-  lp = lpx_create_prob();
+  //lp = lpx_create_prob();
+  lp = glp_create_prob();  // new name for glph 4.55
   glp_set_prob_name(lp,"SET COVER");
   glp_set_obj_dir(lp,GLP_MIN);
 
