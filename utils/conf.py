@@ -1,29 +1,44 @@
-# This module is free software. You can redistribute it and/or modify it under 
-# the terms of the MIT License, see the file COPYING included with this 
-# distribution.
-
 """
 conf.py -- config/job file parser
+
+Changelog:
+    conf.py ; started at 2014-09-24 16:48:23 EDT by Liang Chen
+
+    2015-10-26 12:13:57 EDT bugfix by Liang Chen, allow uppercased key name and rename section name list key with underscores.
+
+    2015-10-26 13:02:52 EDT minor changes.
 """
 
 class Conf(object):
-    """config file reader"""
+    """
+    config file reader
+    """
     def __init__(self):
         self._conf = dict()
         pass
     def read(self, fname):
-        """return the sections and options in fname."""
+        """
+        read the file specified in fname, and return the sections and options in a dictionary.
+
+        IOError will be raised when the operation fails.
+        """
         self._conf.clear()
         ##
         import ConfigParser
         #
         cfg = ConfigParser.RawConfigParser()
-        cfglst = cfg.read(fname)
+        # keep key name untouched;
+        cfg.optionxform = str
         #
-        if( len(cfglst) > 0 ):
+        cfglst = list()
+        try:
+            cfglst.extend( cfg.read(fname) )
             pass
-        else:
-            raise IOError, "Cannot load file: %s"%(fname)
+        except:
+            raise
+        #
+        if not( len(cfglst) > 0 ):
+            raise IOError, "Cannot load file: %s"%( fname )
         ##
         sections = cfg.sections()
         for i in sections:
@@ -37,10 +52,22 @@ class Conf(object):
             self._conf[i] = td
             #
             pass
-        self._conf['sections'] = sections[:]
+        self._conf['_sections_'] = sections[:]
         ##
         return self._conf
+    def sections(self):
+        """
+        return the list of all section names.
+        """
+        res = list()
+        ##
+        try:
+            res.extend( self._conf['_sections_'] )
+            pass
+        except KeyError:
+            pass
+        ##
+        return res
     pass
-
 ##
 #--eof--#
